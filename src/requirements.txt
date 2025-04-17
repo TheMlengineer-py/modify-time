@@ -1,0 +1,8 @@
+python-dateutil
+pytest
+pre-commit
+black
+flake8
+isort
+Flask
+python-dateutil
