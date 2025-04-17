@@ -41,7 +41,7 @@ jobs:
     - name: Run tests with pytest
       run: |
         pip install pytest
-        pytest src/test_time_parser.py --disable-warnings
+        pytest -s src/test_time_parser.py --disable-warnings
       continue-on-error: false
 
     - name: Lint Python files
