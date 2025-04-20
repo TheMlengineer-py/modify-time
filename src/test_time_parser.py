@@ -55,5 +55,5 @@ def test_unknown_unit():
     with pytest.raises(ValueError):
         print(
             "[test_unknown_unit]" "Expected" "ValueError for unknowntime unit 'x'"
-        )  ##todo
+        )
         parse_time_expression("now()+5x")
