@@ -8,6 +8,7 @@ Parses time expressions like `now()+1d+3h` and returns a UTC datetime.
 - Fully tested with pytest.
 - Clean and consistent codebase with pre-commit linting.
 - Github actions for ci
+- workflow automation script
 
 ## run commands via 'bash'
 
@@ -15,10 +16,14 @@ Parses time expressions like `now()+1d+3h` and returns a UTC datetime.
 -  cd src
 -  python web.py
 ## to test the parser application in local##
--  python app.py
+- cd src
+- python app.py
 ## to run test on the parser function in local machine ## 
+- cd src
 - pytest -s test_time_parser.py
- 
+## to automate workflow in local machine ## 
+- cd modify-time
+- ./run_all.sh 
 
 
 
