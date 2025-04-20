@@ -17,8 +17,3 @@ repos:
     hooks:
       - id: isort
 
-#  - repo: https://github.com/pycqa/flake8 ##todo
-#    rev: 7.0.0
-#    hooks:
-#      - id: flake8
-
