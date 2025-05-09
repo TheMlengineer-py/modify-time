@@ -21,7 +21,9 @@ def parse_time_expression(expression: str, base_time: datetime = None) -> dateti
     current_time = base_time or datetime.utcnow()
 
     # Correct regex order: longer units before shorter (e.g., 'mon' before 'm')
-    pattern = r"([+-])(\d+)(mon|y|d|h|m|s)"
+    ## pattern = r"([+-_])(\d+)(mon|y|d|h|m|s)(|@)" ## todo
+
+    pattern = r"([+-_])(\d+)(mon|y|d|h|m|s)" #added underscore "_" into regex
     expression_body = expression[5:]  # skip 'now()'
 
     matches = re.findall(pattern, expression_body)
@@ -35,8 +37,17 @@ def parse_time_expression(expression: str, base_time: datetime = None) -> dateti
 
     for operator, value, unit in matches:
         amount = int(value)
-        if operator == "-":
+        if operator == "_":
+        ##if operator == "-":   ## todo
             amount *= -1
+        elif operator == "-":
+            amount *= -1
+
+               #optimized
+    # for operator, value, unit in matches:
+    #     amount = int(value)
+    #     if operator in ("-", "_"):
+    #         amount *= -1
 
         if unit == "s":
             current_time += timedelta(seconds=amount)
