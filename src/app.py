@@ -1,23 +1,27 @@
+from flask import Flask, render_template, request
+
 from time_parser import parse_time_expression
 
+# app = Flask(__name__)
 
-def main():
-    """
-    Simple CLI application for parsing relative time expressions
-    like 'now()+1d+3h'.
+# Specify template_folder to point to ui/templates
+app = Flask(__name__, template_folder="../frontend/templates")
 
-    This script uses the parse_time_expression function
-    to convert user-input strings
-    into calculated UTC datetime values.
-    """
 
-    user_input = input("Enter time expression (e.g., 'now()+1d+3h'): ")
-    try:
-        parsed_time = parse_time_expression(user_input)
-        print("Resulting UTC time:", parsed_time.isoformat() + "Z")
-    except Exception as e:
-        print("Error:", str(e))
+@app.route("/", methods=["GET", "POST"])
+def index():
+    result = None
+    error = None
+    if request.method == "POST":
+        expr = request.form.get("expression", "").strip()
+        try:
+            parsed = parse_time_expression(expr)
+            result = parsed.isoformat() + "Z"
+        except Exception as e:
+            error = str(e)
+
+    return render_template("index.html", result=result, error=error)
 
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=False)
