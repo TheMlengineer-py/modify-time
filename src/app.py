@@ -2,10 +2,10 @@ from flask import Flask, render_template, request
 
 from time_parser import parse_time_expression
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
 # Specify template_folder to point to ui/templates
-app = Flask(__name__, template_folder="../frontend/templates")
+#app = Flask(__name__, template_folder="../frontend/templates")
 
 
 @app.route("/", methods=["GET", "POST"])
